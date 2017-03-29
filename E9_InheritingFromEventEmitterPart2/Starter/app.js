@@ -2,6 +2,12 @@ var EventEmitter = require('events');
 var util = require('util');
 
 function Greetr() {
+	// EventEmitter is a function constructor, but I'm overwriting what the `this`
+	// keyword is
+	// this is aka 'super constructor' or constructor I am inheriting from
+	EventEmitter.call(this);
+	// since `this` is passed by reference, I can keep adding on my own properties
+	// and methods
 	this.greeting = 'Hello world!';
 }
 
