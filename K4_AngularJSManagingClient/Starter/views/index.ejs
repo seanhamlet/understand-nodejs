@@ -1,8 +1,37 @@
-<html>
+<!-- ng-app: name of angular app -->
+<html ng-app="TestApp">
 	<head>
 		<title>The MEAN stack</title>
+		<!-- browser loaded javascript -->
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
 	</head>
-	<body>
+	<!-- add controller to control "children" of body HTML element -->
+	<!-- "as vm" makes it easier to deal with data and methods made available via controller -->
+	<!-- "vm" = view model or just a variable name to access "message"-->
+	<body ng-controller="MainController as vm">
+
+		<!-- whatever is typed in this text box will be updated below in {{vm.message}} -->
+		<!-- this happens automatically as you type -->
+		<!-- angular makes this happen, dynamic webpages where UI changes in response to 
+		user's input  -->
+		<input type="text" ng-model="vm.message" />
+		<br />
+
+		<!-- this will be replaced when the javascript runs in the browser (bottom of body tag) -->
+		{{ vm.message }}
+		<br />
+		<ul>
+			<!-- ng-repeat loops over array of people and creates list item with person.name
+				 ng-repeat recreates <li> for every item in array -->
+			<li ng-repeat="person in vm.people">
+				{{ person.name }}
+			</li>
+		</ul>
+
+		<!-- access the "public" folder using "assets" route for static files -->
+		<!-- node doesn't process this file, it only delivers the content of this file -->
+		<!-- the browser will make that request via this code and then do processing -->
+		<!-- this will be loaded after angular.js is loaded -->
+		<script src="/assets/js/app.js"></script>
 	</body>
 </html>
